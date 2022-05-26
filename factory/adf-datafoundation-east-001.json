@@ -1,0 +1,9 @@
+{
+	"name": "adf-datafoundation-east-001",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "9a83fbec-e3a6-474c-81c5-cb92439605ba",
+		"tenantId": "af8c26b9-c91f-45e7-a2e0-7442cfb83996"
+	}
+}
