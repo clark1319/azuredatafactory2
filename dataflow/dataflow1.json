@@ -1,0 +1,78 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "LS_ABLB_DF",
+						"type": "LinkedServiceReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          VendorID as long,",
+				"          lpep_pickup_datetime as timestamp,",
+				"          lpep_dropoff_datetime as timestamp,",
+				"          store_and_fwd_flag as string,",
+				"          RatecodeID as double,",
+				"          PULocationID as long,",
+				"          DOLocationID as long,",
+				"          passenger_count as double,",
+				"          trip_distance as double,",
+				"          fare_amount as double,",
+				"          extra as double,",
+				"          mta_tax as double,",
+				"          tip_amount as double,",
+				"          tolls_amount as double,",
+				"          ehail_fee as integer,",
+				"          improvement_surcharge as double,",
+				"          total_amount as double,",
+				"          payment_type as double,",
+				"          trip_type as double,",
+				"          congestion_surcharge as double",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet',",
+				"     fileSystem: 'datalake',",
+				"     folderPath: 'raw',",
+				"     fileName: 'green_tripdata_2022-02.parquet') ~> source1",
+				"source1 select(mapColumn(",
+				"          VendorID,",
+				"          lpep_pickup_datetime,",
+				"          lpep_dropoff_datetime,",
+				"          store_and_fwd_flag,",
+				"          RatecodeID,",
+				"          PULocationID,",
+				"          DOLocationID,",
+				"          passenger_count,",
+				"          trip_distance,",
+				"          fare_amount,",
+				"          extra,",
+				"          mta_tax,",
+				"          tip_amount,",
+				"          tolls_amount,",
+				"          ehail_fee,",
+				"          improvement_surcharge,",
+				"          total_amount,",
+				"          payment_type,",
+				"          trip_type,",
+				"          congestion_surcharge",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1"
+			]
+		}
+	}
+}
