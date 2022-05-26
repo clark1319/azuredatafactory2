@@ -1,0 +1,21 @@
+{
+	"name": "DS_ABLB_Taxi",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ABLB_DF",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "green_tripdata_2022-02.parquet",
+				"folderPath": "raw",
+				"fileSystem": "datalake"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
